@@ -1,0 +1,17 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# .DS_Store
+.DS_Store
+
+# node_modules
+node_modules/
+
+.idea/

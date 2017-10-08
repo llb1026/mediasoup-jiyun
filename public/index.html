@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>mediasoup test</title>
+    </head>
+    <body>
+        <button id="start_video_button" onclick="startVideo();">Start Video</button>
+        <button id="stop_video_button" onclick="stopVideo();">Stop Video</button>&nbsp;
+        <button id="connect_button"  onclick="connect();">Connect</button>
+        <button id="disconnect_button"  onclick="dissconnect();">Disconnect</button>
+        <input type="checkbox" id="plan_b_check" >planB</input>
+
+        <div>
+            <h1>로컬 비디오</h1><br />
+            <video id="local_video" autoplay style="width: 160px; height: 120px; border: 1px solid black;"></video>
+
+            <span id="state_span"></span>
+        </div>
+
+        <div>
+            <h1>리모트 비디오</h1><br />
+            <div id="remote_container"></div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
