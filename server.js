@@ -1,15 +1,35 @@
 'use strict';
 
+// SSL certification 파일들 읽어오기
+const https = require('https');
+const fs = require('fs');
+var options = {
+    key: fs.readFileSync('cert/key.pem').toString(),
+    cert: fs.readFileSync('cert/cert.pem').toString()
+};
+
 const WebSocketServer = require('ws').Server;
+/*
 const wsServer = new WebSocketServer({ port: 3001 });
-console.log('웹소켓 서버 스타트! 3001번 포트입니당');
+console.log('웹소켓 서버 스타트! 3001번 포트입니다');
+*/
 
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
+/*
 const webServer = app.listen(3000, function () {
     console.log('웹서버 스타트! http://localhost:' + webServer.address().port + '/');
 });
+*/
+
+// https 연결을 위한 서버 새로 생성
+const webServer = https.createServer( options, app ).listen(3000, function () {
+    console.log('웹서버 스타트! https://localhost:' + webServer.address().port + '/');
+});
+
+const wsServer = new WebSocketServer({ server: webServer });
+console.log('웹소켓 서버 스타트! ' + webServer.address().port + '번 포트입니다');
 
 const mediasoup = require('mediasoup');
 const RTCPeerConnection = mediasoup.webrtc.RTCPeerConnection;

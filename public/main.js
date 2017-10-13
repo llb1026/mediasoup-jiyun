@@ -20,7 +20,11 @@ if (window.window.webkitRTCPeerConnection) {
 }
 
 // *** 웹소켓 ***
+/*
 let ws = new WebSocket('ws://localhost:3001/');
+*/
+let ws = new WebSocket('wss://' + window.location.hostname + ':' + window.location.port + '/');
+console.log('웹소켓 url은 ' + 'wss://' + window.location.hostname + ':' + window.location.port + '/');
 
 ws.onopen = function (event) {
     console.log('ws open()');
@@ -35,10 +39,6 @@ ws.onmessage = function (p1) {
     console.log('ws onmessage() DATA: ' + p1.data);
 
     let message = JSON.parse(p1.data);
-
-    if (message.type === 'response') {
-        console.warn('NOT USED');
-    }
 
     if (message.type === 'offer') {
         console.log('오퍼 받음...');

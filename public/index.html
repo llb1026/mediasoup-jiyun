@@ -5,6 +5,7 @@
         <title>mediasoup test</title>
     </head>
     <body>
+        <h1>Mediasoup 멀티 비디오채팅 with WebSocket & SSL</h1>
         <button id="start_video_button" onclick="startVideo();">Start Video</button>
         <button id="stop_video_button" onclick="stopVideo();">Stop Video</button>&nbsp;
         <button id="connect_button"  onclick="connect();">Connect</button>
@@ -12,14 +13,14 @@
         <input type="checkbox" id="plan_b_check" >planB</input>
 
         <div>
-            <h1>로컬 비디오</h1><br />
+            <h2>로컬 비디오</h2><br />
             <video id="local_video" autoplay style="width: 160px; height: 120px; border: 1px solid black;"></video>
 
             <span id="state_span"></span>
         </div>
 
         <div>
-            <h1>리모트 비디오</h1><br />
+            <h2>리모트 비디오</h2><br />
             <div id="remote_container"></div>
         </div>
 

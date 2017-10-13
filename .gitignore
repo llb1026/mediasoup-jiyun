@@ -14,4 +14,7 @@ pids
 # node_modules
 node_modules/
 
+# SSL certification
+cert/
+
 .idea/
