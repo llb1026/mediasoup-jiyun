@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>mediasoup test</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <h1>Mediasoup 멀티 비디오채팅 with WebSocket & SSL</h1>
@@ -22,6 +23,11 @@
         <div>
             <h2>리모트 비디오</h2><br />
             <div id="remote_container"></div>
+        </div>
+
+        <div id="chat">
+            <div id="messages"></div>
+            <input type="text" id="message_input" placeholder="채팅창이다!!">
         </div>
 
         <script src="main.js"></script>

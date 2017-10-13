@@ -110,6 +110,10 @@ wsServer.on('connection', function connection(ws) {
             console.error('절대 후보 받아서는 안됨');
         } else if (inMessage.type === 'bye') {
             cleanUpPeer(ws);
+        } else if (inMessage.type === 'chat') {
+            // addChatMessage(inMessage);
+            sendback(ws, inMessage);
+            console.log('%s 로부터 온 메세지는 ' + inMessage.message, id);
         }
     });
 

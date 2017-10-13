@@ -48,6 +48,9 @@ ws.onmessage = function (p1) {
     } else if (message.type === 'answer') {
         console.log('응답 받음...');
         console.warn('NOT USED');
+    } else if (message.type === 'chat') {
+        addChatMessage(message);
+        console.log ('채팅 메세지 받음... ' + message.message);
     }
 };
 
@@ -347,6 +350,30 @@ function connect() {
     updateButtons();
 }
 
+// 새로운 채팅 메시지를 채팅창에 추가
+function addChatMessage(signal) {
+    var messages = document.getElementById('messages');
+    var user = signal.user || '상대방';
+    messages.innerHTML = user + ': ' + signal.message + '<br>\n' + messages.innerHTML;
+    console.log('채팅으로 ' + signal.message + '라고 보냄');
+}
+
+// 채팅 메시지를 다른 브라우저로 보냄
+function sendChatMessage(message) {
+    if (message.keyCode == 13) {
+        var newMessage = this.value;
+        this.value = "";
+        sendJson({
+            type: 'chat',
+            message: newMessage
+        });
+        addChatMessage({
+            user: '나',
+            message: newMessage
+        });
+    }
+}
+
 function callWithCapabilitySDP() {
     peerConnection = prepareNewConnection();
     peerConnection.createOffer()
@@ -490,4 +517,11 @@ function disableElement(id) {
 }
 
 updateButtons();
+
+// 채팅창 세팅
+document.getElementById('message_input').onkeydown = sendChatMessage;
+document.getElementById('message_input').onfocus = function () {
+    this.value = "";
+};
+
 console.log('*** 준비완료! ***');
